@@ -5,35 +5,33 @@ class WheelOfFortune
     @theme = hash[:theme]
     @phrase = hash[:phrase]
     @guesses = []
-      if @phrase
-      @answer_array = @phrase.gsub(/\w/, '_').chars
-      @letters_to_guess = @phrase.gsub(/\s/, '').length
-    end
+    @guessed_letters = []
   end
 
   def to_s
-    @answer_array.join
+    @phrase.gsub!(/\w/, '_').chars
     return @phrase
   end
 
   def can_i_have?(input)
     lowercase_input = input.downcase 
     lowercase_phrase = @phrase.downcase
-    guesses.push(input)
+    @guesses.push(input)
     if lowercase_phrase.include? lowercase_input
-      return true
+      return true 
     else 
       return false
   end
 end
 
   def game_over?
-    if guesses == phrase 
-      return true
-    end
-    else 
-    return false
+  @noletters = @phrase.length
+  if @noletters > 0
+    return true
   end
+   else 
+    return false
+end
 end
 
 
